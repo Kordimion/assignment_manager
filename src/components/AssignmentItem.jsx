@@ -2,20 +2,29 @@ import { Checkbox, ListItem, IconButton, ListItemText } from '@material-ui/core'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import React from 'react';
+import React, { useState } from 'react';
 
-function AssignmentItem() {
+function AssignmentItem(props) {
+    const [completed, setCompleted] = useState(false);
+    const {id, title, remove, complete} = props;
+
     return (
-        <ListItem>
+        <ListItem key={id}>
             <Checkbox 
                 icon={<RadioButtonUncheckedIcon />}
                 checkedIcon={<CheckCircleOutlineIcon />} 
+                onChange={() => {
+                    setCompleted(prev => !prev);
+                    complete(!completed);
+                }}
+                checked={completed}
             />
-            <ListItemText>
-                example text asdffffff ffffffff ffffffffffff fffffffffff 
-                sdfasf sd fassds sd afsdf sa 
+            <ListItemText classes={ {
+                root: completed ? "assignment-completed" : null
+            }}>
+               {title}
             </ListItemText>
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete remove" onClick={remove}>
                 <HighlightOffIcon />
             </IconButton>
         </ListItem>
