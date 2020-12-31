@@ -5,8 +5,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React, { useState } from 'react';
 
 function AssignmentItem(props) {
-    const [completed, setCompleted] = useState(false);
-    const {id, title, remove, complete} = props;
+    const {id, title, remove, complete, isCompleted} = props;
 
     return (
         <ListItem key={id}>
@@ -14,13 +13,12 @@ function AssignmentItem(props) {
                 icon={<RadioButtonUncheckedIcon />}
                 checkedIcon={<CheckCircleOutlineIcon />} 
                 onChange={() => {
-                    setCompleted(prev => !prev);
-                    complete(!completed);
+                    complete(!isCompleted);
                 }}
-                checked={completed}
+                checked={isCompleted}
             />
             <ListItemText classes={ {
-                root: completed ? "assignment-completed" : null
+                root: isCompleted ? "assignment-completed" : null
             }}>
                {title}
             </ListItemText>
