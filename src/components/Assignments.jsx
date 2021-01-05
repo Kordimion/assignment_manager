@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
 }
 
 function Assignments(props) {
-    console.log(props);
     return (
         <Paper>
             <List aria-label="assignments">

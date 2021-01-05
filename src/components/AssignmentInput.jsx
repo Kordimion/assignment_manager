@@ -14,7 +14,7 @@ function AssignmentInput(props) {
 
     const handleSubmit = (e) => {
         if(inputValue !== "") {
-            console.log(props.addAssignmentAction(inputValue));
+            props.addAssignmentAction(inputValue);
             setInputValue("");
         }
     }
