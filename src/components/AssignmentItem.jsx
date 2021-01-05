@@ -3,30 +3,42 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React from 'react';
+import { removeAssignmentAction, completeAssignmentAction } from '../redux/ducks/assignments';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state, ownProps) => {
+    const { id } = ownProps;
+    const todo = state.find(obj => obj.id === id);
+
+    return { ...todo}
+}
+
+const mapDispatchToProps = {
+    removeAssignmentAction,
+    completeAssignmentAction
+}
 
 function AssignmentItem(props) {
-    const {id, title, remove, complete, isCompleted} = props;
+    const {id, title, isCompleted,completeAssignmentAction, removeAssignmentAction} = props;
 
     return (
         <ListItem key={id}>
             <Checkbox 
                 icon={<RadioButtonUncheckedIcon />}
                 checkedIcon={<CheckCircleOutlineIcon />} 
-                onChange={() => {
-                    complete(!isCompleted);
-                }}
                 checked={isCompleted}
+                onClick={() => completeAssignmentAction(props.id)}
             />
             <ListItemText classes={ {
                 root: isCompleted ? "assignment-completed" : null
             }}>
                {title}
             </ListItemText>
-            <IconButton aria-label="delete remove" onClick={remove}>
+            <IconButton aria-label="delete remove" onClick={() => removeAssignmentAction(props.id)}>
                 <HighlightOffIcon />
             </IconButton>
         </ListItem>
     )
 }
 
-export default AssignmentItem
+export default connect(mapStateToProps,mapDispatchToProps)(AssignmentItem);

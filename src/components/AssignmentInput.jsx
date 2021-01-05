@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { InputBase, IconButton } from '@material-ui/core';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
+import { addAssignmentAction } from '../redux/ducks/assignments';
+import { connect } from 'react-redux';
 
 function AssignmentInput(props) {
     const [inputValue, setInputValue] = useState("");
-    const { add } = props;
-
+    
     const handleChange = (e) => {
         setInputValue(e.target.value);
     }
 
     const handleSubmit = (e) => {
         if(inputValue !== "") {
-            add(inputValue);
+            console.log(props.addAssignmentAction(inputValue));
             setInputValue("");
         }
-        
     }
 
     return (
@@ -40,4 +40,4 @@ function AssignmentInput(props) {
     )
 }
 
-export default AssignmentInput
+export default connect(null, {addAssignmentAction})(AssignmentInput)
