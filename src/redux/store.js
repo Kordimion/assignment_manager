@@ -4,5 +4,6 @@ import localSave from './middleware/localSave';
 
 export default configureStore({
     reducer: rootReducer,
-    middleware: localSave
+    middleware: ((getDefaultMiddleware) => getDefaultMiddleware().concat(localSave)),
+    devTools: process.env.NODE_ENV !== 'production',
 });

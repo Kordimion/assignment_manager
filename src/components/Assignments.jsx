@@ -1,5 +1,5 @@
 import { Paper, List, Divider } from '@material-ui/core'
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import AssignmentInput from './AssignmentInput'
 import AssignmentItem from './AssignmentItem'
