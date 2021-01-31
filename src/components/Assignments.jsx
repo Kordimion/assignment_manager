@@ -6,7 +6,7 @@ import AssignmentItem from './AssignmentItem'
 
 const mapStateToProps = (state) => {
     return {
-        ids: state.map(obj => obj.id)
+        ids: state.assignments.map(obj => obj.id)
     };
 }
 

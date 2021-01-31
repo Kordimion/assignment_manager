@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState = JSON.parse(localStorage.getItem("assignments")) || [];
+const initialState = {
+    assignments: JSON.parse(localStorage.getItem("assignments")) || [],
+};
 
 const slice = createSlice({
     name: "assignments",
@@ -9,21 +11,20 @@ const slice = createSlice({
     reducers: {
         addAssignment: ( state, action ) => {
             const { title, id } = action.payload;
-            state.push({
+            state.assignments.push({
                 title: title,
                 id: id,
                 isCompleted: false
             });
         },
-        removeAssignment: ( state, action ) => state.filter(
-            obj => obj.id !== action.payload.id
-        ),
-        completeAssignment: ( state, action ) => state.map(
-            obj => {
-                if(obj.id === action.payload.id) return {...obj, isCompleted: !obj.isCompleted};
-                return obj;
-            }
-        )
+        removeAssignment: ( state, action ) => ({
+         ...state,
+         assignments: state.assignments.filter(obj => obj.id !== action.payload.id)   
+        }),
+        completeAssignment: ( state, action ) => {
+            const assignment = state.assignments.find(obj => obj.id === action.payload.id);
+            assignment.isCompleted = !assignment.isCompleted;
+        }
     }
 });
 

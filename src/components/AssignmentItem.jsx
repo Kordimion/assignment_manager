@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     const { id } = ownProps;
-    const todo = state.find(obj => obj.id === id);
+    const todo = state.assignments.find(obj => obj.id === id);
     return { ...todo}
 }
 
