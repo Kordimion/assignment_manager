@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-    assignments: JSON.parse(localStorage.getItem("assignments")) || [],
+    assignments: JSON.parse(localStorage.getItem("assignments")) || {},
 };
 
 const slice = createSlice({
@@ -10,20 +10,16 @@ const slice = createSlice({
     initialState: initialState,
     reducers: {
         addAssignment: ( state, action ) => {
-            const { title, id } = action.payload;
-            state.assignments.push({
-                title: title,
-                id: id,
+            state.assignments[action.payload.id] = {
+                title: action.payload.title,
                 isCompleted: false
-            });
+            }
         },
-        removeAssignment: ( state, action ) => ({
-         ...state,
-         assignments: state.assignments.filter(obj => obj.id !== action.payload.id)   
-        }),
+        removeAssignment: ( state, action ) => {
+            delete state.assignments[action.payload.id];
+        },
         completeAssignment: ( state, action ) => {
-            const assignment = state.assignments.find(obj => obj.id === action.payload.id);
-            assignment.isCompleted = !assignment.isCompleted;
+            state.assignments[action.payload.id].isCompleted = !state.assignments[action.payload.id].isCompleted;
         }
     }
 });

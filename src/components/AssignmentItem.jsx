@@ -7,9 +7,7 @@ import { removeAssignmentAction, completeAssignmentAction } from '../redux/ducks
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-    const { id } = ownProps;
-    const todo = state.assignments.find(obj => obj.id === id);
-    return { ...todo}
+    return state.assignments[ownProps.id];
 }
 
 const mapDispatchToProps = {
