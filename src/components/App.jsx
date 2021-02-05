@@ -1,22 +1,9 @@
-import { Grid } from "@material-ui/core";
-import Assignments from "./Assignments";
-import Navbar from "./Navbar";
+import React from 'react';
+import MainPage from '../pages/MainPage';
 
 function App() {
   
-  return (
-    <div className="App">
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Navbar />
-        </Grid>
-        <Grid item xs={12}>
-          <Assignments />
-        </Grid>
-      </Grid>
-      
-    </div>
-  );
+  return (<MainPage />);
 }
 
 export default App;
