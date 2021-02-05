@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 import Assignments from '../components/Assignments';
 import Hidden from '@material-ui/core/Hidden';
 import SidebarContent from '../components/SidebarContent';
-import Paper from '@material-ui/core/Paper';
 
 function MainPage() {
     return (
@@ -14,14 +13,12 @@ function MainPage() {
                 <Navbar />
             </Grid>
             <Hidden xsDown>
-                <Grid item xs={3}>
-                    <Paper>
-                        <SidebarContent />
-                    </Paper>
+                <Grid item xs={4} lg={3} xl={2}>
+                    <SidebarContent />
                 </Grid>
             </Hidden>
             
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={8} lg={9} xl={10}>
                 <Assignments />
             </Grid>
         </Grid>
