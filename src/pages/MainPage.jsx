@@ -5,8 +5,9 @@ import Navbar from '../components/Navbar';
 import Assignments from '../components/Assignments';
 import Hidden from '@material-ui/core/Hidden';
 import SidebarContent from '../components/SidebarContent';
+import { Typography } from '@material-ui/core';
 
-function MainPage() {
+function MainPage(props) {
     return (
         <Grid container spacing={1} alignItems="stretch">
             <Grid item xs={12}>
@@ -19,6 +20,7 @@ function MainPage() {
             </Hidden>
             
             <Grid item xs={12} sm={8} lg={9} xl={10}>
+                <Typography variant="h1"></Typography>
                 <Assignments />
             </Grid>
         </Grid>

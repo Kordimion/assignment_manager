@@ -1,4 +1,8 @@
-// import { combineReducers } from 'redux';
-import assignments from './ducks/assignments';
+import { combineReducers } from 'redux';
+import assignmentsReducer from './ducks/assignments';
+import lessonsFilterReducer from './ducks/lessonsFilter';
 
-export default assignments;
+export default combineReducers({
+    assignments: assignmentsReducer,
+    currentLesson: lessonsFilterReducer
+});

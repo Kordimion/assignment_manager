@@ -1,25 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState = {
-    assignments: JSON.parse(localStorage.getItem("assignments")) || {},
-};
+const initialState = JSON.parse(localStorage.getItem("assignments")) || {"123": {title: "123", isCompleted: false}};
 
 const slice = createSlice({
     name: "assignments",
     initialState: initialState,
     reducers: {
         addAssignment: ( state, action ) => {
-            state.assignments[action.payload.id] = {
+            state[action.payload.id] = {
                 title: action.payload.title,
                 isCompleted: false
             }
         },
         removeAssignment: ( state, action ) => {
-            delete state.assignments[action.payload.id];
+            delete state[action.payload.id];
         },
         completeAssignment: ( state, action ) => {
-            state.assignments[action.payload.id].isCompleted = !state.assignments[action.payload.id].isCompleted;
+            const currentStatus = state[action.payload.id].isCompleted;
+            state[action.payload.id].isCompleted = !currentStatus;
         }
     }
 });
