@@ -12,6 +12,7 @@ const slice = createSlice({
                 title: action.payload.title,
                 isCompleted: false
             }
+            if(action.payload.lesson) state[action.payload.id].lesson = action.payload.lesson;
         },
         removeAssignment: ( state, action ) => {
             delete state[action.payload.id];
@@ -28,7 +29,8 @@ export const addAssignmentAction = content => ({
     payload: {
         id: uuidv4(),
         isCompleted: false,
-        title: content
+        title: content.title,
+        lesson: content.lesson
     }
 });
 

@@ -5,6 +5,14 @@ import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRoun
 import { addAssignmentAction } from '../redux/ducks/assignments';
 import { connect } from 'react-redux';
 
+const mapStateToProps = (state, ownProps) => {
+    return { lesson: state.currentLesson };
+}
+
+const mapDispatchToProps = {
+    addAssignmentAction,
+}
+
 function AssignmentInput(props) {
     const [inputValue, setInputValue] = useState("");
     
@@ -14,7 +22,7 @@ function AssignmentInput(props) {
 
     const handleSubmit = (e) => {
         if(inputValue !== "") {
-            props.addAssignmentAction(inputValue);
+            props.addAssignmentAction({title: inputValue, lesson: props.lesson});
             setInputValue("");
         }
     }
@@ -40,4 +48,4 @@ function AssignmentInput(props) {
     )
 }
 
-export default connect(null, {addAssignmentAction})(AssignmentInput)
+export default connect(mapStateToProps, mapDispatchToProps)(AssignmentInput)
