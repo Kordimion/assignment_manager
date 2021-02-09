@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState = JSON.parse(localStorage.getItem("assignments")) || {"123": {title: "123", isCompleted: false}};
+const initialState = JSON.parse(localStorage.getItem("assignments")) || {};
 
 const slice = createSlice({
     name: "assignments",

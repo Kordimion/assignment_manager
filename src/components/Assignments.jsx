@@ -6,13 +6,13 @@ import AssignmentItem from './AssignmentItem'
 
 const mapStateToProps = (state) => {
     let assignmentIds = []
-    if(state.currentLesson !== ''){
-        const {assignments} = state;
-        for(const id in assignments) {
-            if(assignments[id].lesson === undefined || assignments[id].lesson === state.currentLesson) assignmentIds.push(id)
-        }
-    } else assignmentIds = Object.keys(state.assignments);
-    
+    // if(state.currentLesson !== ''){
+    //     const {assignments} = state;
+    //     for(const id in assignments) {
+    //         if(assignments[id].lesson === undefined || assignments[id].lesson === state.currentLesson) assignmentIds.push(id)
+    //     }
+    // } else assignmentIds = Object.keys(state.assignments);
+    assignmentIds = Object.keys(state.assignments);
     return {
         ids: assignmentIds 
     };
