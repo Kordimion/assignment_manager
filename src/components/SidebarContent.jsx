@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import { setLessonAction } from '../redux/ducks/lessonsFilter';
 
 import SidebarLessons from './SidebarLessons';
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +24,7 @@ function SidebarContent(props) {
     
     return (
         <Paper className={classes.root}> 
-            <Button size="large" variant="contained" color="primary" onClick={() => setLessonAction("")}>Inbox</Button>
+            <Button size="large" variant="contained" color="primary">Inbox</Button>
             <Divider className={classes.divider} />
             <SidebarLessons />
         </Paper>
