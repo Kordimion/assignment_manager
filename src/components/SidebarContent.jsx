@@ -4,8 +4,15 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 
 import SidebarLessons from './SidebarLessons';
+import { setLessonAction } from '../redux/ducks/lessonsFilter';
+
+const mapDispatchToProps = {
+    setLessonAction
+}
+
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: "200px",
@@ -21,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 function SidebarContent(props) {
     const classes = useStyles();
-    
+    console.log(props);
     return (
         <Paper className={classes.root}> 
-            <Button size="large" variant="contained" color="primary">Inbox</Button>
+            <Button size="large" variant="contained" color="primary" onClick={() => props.setLessonAction("")} >Inbox</Button>
             <Divider className={classes.divider} />
             <SidebarLessons />
         </Paper>
     )
 }
 
-export default SidebarContent; 
+export default connect(null, mapDispatchToProps)(SidebarContent); 
