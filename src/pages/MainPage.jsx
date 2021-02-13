@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Navbar from '../components/Navbar';
 import Assignments from '../components/Assignments';
 import Hidden from '@material-ui/core/Hidden';
-import SidebarContent from '../components/SidebarContent';
+import SidebarContent from '../components/Sidebar/SidebarContent';
 import { Typography } from '@material-ui/core';
 
 function MainPage(props) {

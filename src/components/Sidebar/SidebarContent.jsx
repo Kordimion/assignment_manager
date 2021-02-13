@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 
 import SidebarLessons from './SidebarLessons';
-import { setLessonAction } from '../redux/ducks/lessonsFilter';
+import { setLessonAction } from '../../redux/ducks/lessonsFilter';
 
 const mapDispatchToProps = {
     setLessonAction

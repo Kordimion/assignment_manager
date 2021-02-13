@@ -5,8 +5,10 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
-import { setLessonAction } from '../redux/ducks/lessonsFilter';
+import { setLessonAction } from '../../redux/ducks/lessonsFilter';
+import { addLessonAction, removeLessonAction } from '../../redux/ducks/lessons';
 import SettingsIcon from '@material-ui/icons/Settings';
+import AddIcon from '@material-ui/icons/Add';
 
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -16,13 +18,19 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import LessonsSettingsList from './LessonsSettingsList';
 
 const mapStateToProps = (state, ownProps) => {
-    return { lesson : state.currentLesson };
+    return { 
+        currentLesson : state.currentLesson,
+        lessons: state.lessons,
+    };
 }
 
 const mapDispatchToProps = {
-    setLessonAction
+    setLessonAction,
+    addLessonAction,
+    removeLessonAction
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -42,13 +50,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SidebarLessons(props) {
-    const { lesson, setLessonAction } = props;
+    const { currentLesson, setCurrentLessonAction } = props;
     const [open, setOpen] = React.useState(true);
     const [settingsOpen, setSettingsOpen] = React.useState(false);
     const classes = useStyles();
 
     const lessonButton = (title) => (
-        <Button size="large" color={lesson === title ? "primary" : ""} onClick={() => {setLessonAction(title)}} >{title}</Button>
+        <Button size="large" color={currentLesson === title ? "primary" : ""} onClick={() => {setCurrentLessonAction(title)}} >{title}</Button>
     )
 
     return (
@@ -83,14 +91,13 @@ function SidebarLessons(props) {
             </div>
             </Collapse>
         </div >
-        <Dialog onClose={() => {setSettingsOpen(false)}} aria-labelledby="manage lesson settings" open={settingsOpen}>
+        <Dialog onClose={() => {setSettingsOpen(false)}} aria-labelledby="manage lesson settings" open={settingsOpen} >
         <DialogTitle id="customized-dialog-title" >
             Lesson settings
         </DialogTitle>
         <DialogContent dividers>
-            <Typography>Add lesson</Typography>
-            <Typography>Delete lesson</Typography>
-            <Typography>Rename lesson</Typography>
+            <LessonsSettingsList />
+            <Button startIcon={<AddIcon color="secondary"/>} onClick={() => {props.addLessonAction({title: "new lesson"})}}>Add lesson</Button>
         </DialogContent>
         <DialogActions>
           <Button autoFocus color="primary">

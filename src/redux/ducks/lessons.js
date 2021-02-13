@@ -14,12 +14,17 @@ const slice = createSlice({
         },
         removeLesson: ( state, action ) => {
             delete state[action.payload.id];
+        },
+        editLesson: (state, action ) => {
+            state[action.payload.id] = {
+                title: action.payload.title
+            }
         }
     }
 });
 
 export const addLessonAction = content => ({
-    type: slice.actions.completeAssignment.toString(),
+    type: slice.actions.addLesson.toString(),
     payload: {
         id: uuidv4(),
         title: content.title
@@ -27,11 +32,19 @@ export const addLessonAction = content => ({
 });
 
 export const removeLessonAction = content => ({
-    type: slice.actions.completeAssignment.toString(),
+    type: slice.actions.removeLesson.toString(),
     payload: {
         id: content.id
     }
 });
 
-export const { addLesson, removeLesson } = slice.actions;
+export const editLessonAction = content => ({
+    type: slice.actions.editLesson.toString(),
+    payload: {
+        id: content.id, 
+        title: content.title
+    }
+})
+
+export const { addLesson, removeLesson, editLesson } = slice.actions;
 export default slice.reducer;
